@@ -6,20 +6,21 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
-
+#include <limits>  
+#include <cstdio>  
 
 using namespace std;
 
-class لعبة_X_O
+class Game_X_O
 {
 private:
 
 	enum enComputerOrPlayer2 { Computer = 0, Player2 = 1 };
 	enum enHardOrEasy { Easy = 0, Hard = 1 };
 
-	short Player_Option[5] = { 0,0,0,0,0 };
-	short Player2_Option[5] = { 0,0,0,0,0 };
-	short Computer_Option[5] = { 0,0,0,0,0 };
+	short Player_Option[5] ;
+	short Player2_Option[5];
+	short Computer_Option[5] ;
 
 
 	vector <vector  <short> > Win_Option = { {1, 2, 3},
@@ -32,16 +33,14 @@ private:
 										   { 4, 5, 6 }
 	};
 
-	short Player_number = 0, Player2_number = 0, Computer_number = 0,
-		Count_Play_P = 0, Count_Play_P2 = 0, Count_Play_Computer = 0, Round_number = 0;
+	short Player_number , Player2_number , Computer_number ,
+		Count_Play_P , Count_Play_P2 , Count_Play_Computer , Round_number ;
 
 	enComputerOrPlayer2 ComputerOrPlayer2;
 	enHardOrEasy HardOrEasy;
 
 
-	char Options[9] = { ' ', ' ', ' ',
-					  ' ', ' ', ' ',
-					  ' ', ' ', ' ' };
+	char Options[9];
 
 	static void  Srand()
 	{
@@ -422,7 +421,32 @@ private:
 	}
 
 public:
+Game_X_O() {
 
+	Round_number = 0;
+	Count_Play_P = 0;
+	Count_Play_P2 = 0;
+	Count_Play_Computer = 0;
+
+	Player_number = 0;
+	Player2_number = 0;
+	Computer_number = 0;
+
+	
+	for (short i = 0; i < 9; i++) {
+		Options[i] = ' ';
+	}
+
+	
+	for (short i = 0; i < 5; i++) {
+		Player_Option[i] = 0;
+		Player2_Option[i] = 0;
+		Computer_Option[i] = 0;
+	}
+
+	
+
+};
 
 	void Start()
 	{
@@ -524,9 +548,10 @@ public:
 
 int main()
 {
-	لعبة_X_O Game;
+	Game_X_O Game;
 	Game.Start();
 
 	system("pause>0");
 	return 0;
 }
+
